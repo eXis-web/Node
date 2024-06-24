@@ -48,3 +48,9 @@ async function invokeAction({ action, i, name, email, phone }) {
 }
 
 invokeAction(options);
+
+//node index.js -a list
+//node index.js -a get -i 05olLMgyVQdWRwgKfg5J6
+//node index.js -a remove -i qdggE76Jtbfd9eWJHrssH
+//node index.js -a add -n Bob -e b@b.com -p 12345678
+//node index.js -a add -n Mango -e mango@gmail.com -p 322-22-22
