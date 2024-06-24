@@ -1,5 +1,3 @@
-// index.js
-
 import { program } from "commander";
 import { listContacts, getContactById, removeContact, addContact } from './contacts.js';
 
