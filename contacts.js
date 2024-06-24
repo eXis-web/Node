@@ -16,7 +16,7 @@ async function listContacts() {
 
 async function getContactById(contactId) {
     const contacts = await listContacts();
-    const contact = contacts.find(contact => contact.id === contactId); // Порівнюємо строкові значення
+    const contact = contacts.find(contact => contact.id === contactId);
     return contact || null;
 }
 
@@ -34,7 +34,7 @@ async function removeContact(contactId) {
 async function addContact(name, email, phone) {
     const contacts = await listContacts();
     const newContact = {
-        id: generateId(), // Генеруємо новий ідентифікатор
+        id: generateId(), 
         name,
         email,
         phone
