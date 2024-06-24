@@ -1,7 +1,8 @@
+// contacts.js
+
 import fs from 'fs/promises';
 import path, { dirname } from 'path';
-import { fileURLToPath } from 'url'; 
-
+import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -13,22 +14,19 @@ async function listContacts() {
     return JSON.parse(data);
 }
 
-async function getContactByIndex(index) {
+async function getContactById(contactId) {
     const contacts = await listContacts();
-    if (index >= 0 && index < contacts.length) {
-        return contacts[index];
-    } else {
-        return null;
-    }
+    const contact = contacts.find(contact => contact.id === contactId); // Порівнюємо строкові значення
+    return contact || null;
 }
 
-
-async function removeContact(index) {
+async function removeContact(contactId) {
     const contacts = await listContacts();
-    if (index < 0 || index >= contacts.length) {
+    const index = contacts.findIndex(contact => contact.id === contactId);
+    if (index === -1) {
         return null;
     }
-    const removedContact = contacts.splice(index, 1)[0];
+    const [removedContact] = contacts.splice(index, 1);
     await fs.writeFile(contactsPath, JSON.stringify(contacts, null, 2));
     return removedContact;
 }
@@ -36,7 +34,7 @@ async function removeContact(index) {
 async function addContact(name, email, phone) {
     const contacts = await listContacts();
     const newContact = {
-        id: generateId(contacts),
+        id: generateId(), // Генеруємо новий ідентифікатор
         name,
         email,
         phone
@@ -46,33 +44,8 @@ async function addContact(name, email, phone) {
     return newContact;
 }
 
-function generateId(contacts) {
-    const existingIds = contacts.map(contact => contact.id);
-    let id;
-    do {
-        id = generateRandomId();
-    } while (existingIds.includes(id));
-    return id;
+function generateId() {
+    return Math.random().toString(36).substr(2, 10);
 }
 
-function generateRandomId() {
-    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_';
-    let id = '';
-    for (let i = 0; i < 20; i++) {
-        id += chars.charAt(Math.floor(Math.random() * chars.length));
-    }
-    return id;
-}
-
-export { listContacts, getContactByIndex, removeContact, addContact };
-
-
-
-
-
-//node index.js --action list
-//node index.js --action get --id 1
-//node index.js --action add --name "John Doe" --email "john.doe@example.com" --phone "1234567890"
-//node index.js --action add --name "Нове Ім'я" --email "новий.email@example.com" --phone "(123) 456-7890"
-
-//node index.js --action remove --id 2
+export { listContacts, getContactById, removeContact, addContact };

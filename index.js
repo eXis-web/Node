@@ -1,18 +1,20 @@
+// index.js
+
 import { program } from "commander";
-import { listContacts, getContactByIndex, removeContact, addContact } from './contacts.js';
+import { listContacts, getContactById, removeContact, addContact } from './contacts.js';
 
 program
     .option("-a, --action <type>", "choose action")
-    .option("-i, --id <type>", "user id")
+    .option("-i, --i <type>", "user id")
     .option("-n, --name <type>", "user name")
     .option("-e, --email <type>", "user email")
     .option("-p, --phone <type>", "user phone");
 
-program.parse();
+program.parse(process.argv);
 
 const options = program.opts();
 
-async function invokeAction({ action, id, name, email, phone }) {
+async function invokeAction({ action, i, name, email, phone }) {
     switch (action) {
         case "list":
             const contacts = await listContacts();
@@ -20,11 +22,11 @@ async function invokeAction({ action, id, name, email, phone }) {
             break;
 
         case "get":
-            const contact = await getContactByIndex(id);
+            const contact = await getContactById(i); // Використовуємо параметр i замість id
             if (contact) {
                 console.log(contact);
             } else {
-                console.log(`Contact with id ${id} not found`);
+                console.log(`Contact with id ${i} not found`);
             }
             break;
 
@@ -34,11 +36,11 @@ async function invokeAction({ action, id, name, email, phone }) {
             break;
 
         case "remove":
-            const removedContact = await removeContact(id);
+            const removedContact = await removeContact(i); // Використовуємо параметр i замість id
             if (removedContact) {
                 console.log('Removed contact:', removedContact);
             } else {
-                console.log(`Contact with id ${id} not found`);
+                console.log(`Contact with id ${i} not found`);
             }
             break;
 
