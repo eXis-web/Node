@@ -22,7 +22,7 @@ async function invokeAction({ action, i, name, email, phone }) {
             break;
 
         case "get":
-            const contact = await getContactById(i); // Використовуємо параметр i замість id
+            const contact = await getContactById(i);
             if (contact) {
                 console.log(contact);
             } else {
@@ -36,7 +36,7 @@ async function invokeAction({ action, i, name, email, phone }) {
             break;
 
         case "remove":
-            const removedContact = await removeContact(i); // Використовуємо параметр i замість id
+            const removedContact = await removeContact(i);
             if (removedContact) {
                 console.log('Removed contact:', removedContact);
             } else {
