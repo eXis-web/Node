@@ -1,5 +1,3 @@
-// contacts.js
-
 import fs from 'fs/promises';
 import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
