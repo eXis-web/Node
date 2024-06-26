@@ -53,5 +53,4 @@ function generateId() {
     return Math.random().toString(36).substr(2, 10);
 }
 
-// Export functions for external use
 export { listContacts, getContactById, removeContact, addContact };
