@@ -48,7 +48,6 @@ async function addContact(name, email, phone) {
     return newContact;
 }
 
-// Helper function to generate a unique ID
 function generateId() {
     return Math.random().toString(36).substr(2, 10);
 }
