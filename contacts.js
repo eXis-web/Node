@@ -38,7 +38,7 @@ async function removeContact(contactId) {
 async function addContact(name, email, phone) {
     const contacts = await listContacts();
     const newContact = {
-        id: generateId(), // Generate a unique ID for the new contact
+        id: generateId(),
         name,
         email,
         phone
