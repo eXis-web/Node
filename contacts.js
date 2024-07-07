@@ -9,7 +9,6 @@ const __dirname = dirname(__filename);
 // Define the path to the contacts JSON file
 const contactsPath = path.join(__dirname, 'db', 'contacts.json');
 
-// Function to list all contacts
 async function listContacts() {
     const data = await fs.readFile(contactsPath, 'utf8');
     return JSON.parse(data);
