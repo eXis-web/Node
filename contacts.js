@@ -2,11 +2,9 @@ import fs from 'fs/promises';
 import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
 
-// Determine the filename and directory of the current module
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-// Define the path to the contacts JSON file
 const contactsPath = path.join(__dirname, 'db', 'contacts.json');
 
 async function listContacts() {
