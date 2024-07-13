@@ -18,7 +18,6 @@ async function getContactById(contactId) {
     return contact || null;
 }
 
-// Function to remove a contact by ID
 async function removeContact(contactId) {
     const contacts = await listContacts();
     const index = contacts.findIndex(contact => contact.id === contactId);
