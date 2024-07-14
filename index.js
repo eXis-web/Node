@@ -49,6 +49,7 @@ async function invokeAction({ action, i, name, email, phone }) {
 
 invokeAction(options);
 
+//functions for test and invoke
 //node index.js -a list
 //node index.js -a get -i 05olLMgyVQdWRwgKfg5J6
 //node index.js -a remove -i qdggE76Jtbfd9eWJHrssH
